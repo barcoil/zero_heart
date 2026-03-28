@@ -89,8 +89,8 @@ GROUPS.forEach(function(g, gi) {
   g.points.forEach(function(p, pi) {
     var isStart = (pi === 0);
     var bg  = isStart ? '#cc0000' : g.color;
-    var sz  = isStart ? 12 : 8;
-    var brd = isStart ? '2px solid #fff' : '1.5px solid #fff';
+    var sz  = isStart ? 14 : 11;
+    var brd = isStart ? '2px solid #fff' : '2px solid #fff';
     var content;
     if (p.remote) {
       content = '<div onclick="showInfo(' + gi + ',' + pi + ')" title="' + p.uid + '" ' +
@@ -100,10 +100,12 @@ GROUPS.forEach(function(g, gi) {
         'style="display:flex;align-items:center;cursor:pointer;">' +
         '<div style="background:' + bg + ';border-radius:50%;flex-shrink:0;' +
         'width:' + sz + 'px;height:' + sz + 'px;' +
-        'border:' + brd + ';box-shadow:1px 1px 4px rgba(0,0,0,0.6);"></div>' +
+        'border:' + brd + ';box-shadow:1px 1px 5px rgba(0,0,0,0.7);"></div>' +
         '<span style="margin-left:3px;font-size:13px;font-weight:bold;' +
-        'background:rgba(255,255,255,0.78);padding:0 2px;border-radius:2px;' +
-        'white-space:nowrap;line-height:1.4;color:#cc0000;">' + p.uid + '</span></div>';
+        'background:rgba(255,255,255,0.92);padding:1px 3px;border-radius:3px;' +
+        'white-space:nowrap;line-height:1.4;color:' + g.color + ';' +
+        'text-shadow:-1px -1px 0 #fff,1px -1px 0 #fff,-1px 1px 0 #fff,1px 1px 0 #fff;' +
+        'box-shadow:0 1px 3px rgba(0,0,0,0.2);">' + p.uid + '</span></div>';
     }
     var ov = new kakao.maps.CustomOverlay({
       position: new kakao.maps.LatLng(p.lat, p.lng),
