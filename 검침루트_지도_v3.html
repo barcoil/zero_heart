@@ -78,8 +78,8 @@ function showInfo(gi, pi) {
     '<br>세대: ' + p.units + '세대' +
     (p.remote ? '<br>✅ 원격 (관리실 검침)' : '') +
     (p.note1 ? '<br>비고: ' + p.note1 + (p.note2 ? ' ' + p.note2 : '') : '');
-  // 전부 원격 주소의 통합 bundle 표시
-  if (p.remote && p.bundle && p.bundle.length > 0) {
+  // bundle 원격 레코드 통합 표시 (비원격·원격 모두)
+  if (p.bundle && p.bundle.length > 0) {
     html += '<hr style="margin:4px 0">';
     p.bundle.forEach(function(b) {
       html += '🏢 ' + (b.building||'') + (b.note1?' '+b.note1:'') +
@@ -135,20 +135,6 @@ GROUPS.forEach(function(g, gi) {
     if (visible) ov.setMap(map);
     layers.push(ov);
 
-    // 비원격 마커에 원격 bundle이 있으면 별도 🏢 오버레이 추가
-    if (!p.remote && p.bundle && p.bundle.length > 0) {
-      var bContent = '<div onclick="showBundle(' + gi + ',' + pi + ')" ' +
-        'style="cursor:pointer;font-size:15px;line-height:1;' +
-        'background:rgba(255,255,255,0.85);border-radius:50%;padding:1px;" ' +
-        'title="원격검침 통합">🏢</div>';
-      var bOv = new kakao.maps.CustomOverlay({
-        position: new kakao.maps.LatLng(p.lat, p.lng),
-        content: bContent, xAnchor: -0.3, yAnchor: 0.5,
-        zIndex: 6
-      });
-      if (visible) bOv.setMap(map);
-      layers.push(bOv);
-    }
   });
 
   groupLayers.push(layers);
