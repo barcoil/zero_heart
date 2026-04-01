@@ -1,0 +1,1547 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<title>빅데이터분석기사 필기 핵심요약</title>
+<style>
+* { box-sizing: border-box; margin: 0; padding: 0; }
+body { font-family: 'Malgun Gothic', 'Apple SD Gothic Neo', sans-serif; background: #1e1e2e; color: #cdd6f4; line-height: 1.8; padding: 40px 20px; }
+.container { max-width: 900px; margin: 0 auto; }
+h1 { font-size: 2em; color: #cba6f7; border-bottom: 3px solid #cba6f7; padding-bottom: 10px; margin: 30px 0 20px; }
+h2 { font-size: 1.5em; color: #89b4fa; border-left: 5px solid #89b4fa; padding-left: 12px; margin: 35px 0 15px; }
+h3 { font-size: 1.2em; color: #a6e3a1; margin: 25px 0 10px; }
+h4 { font-size: 1.05em; color: #f9e2af; margin: 20px 0 8px; }
+p { margin: 10px 0; }
+ul, ol { margin: 8px 0 8px 24px; }
+li { margin: 4px 0; }
+table { border-collapse: collapse; width: 100%; margin: 12px 0; font-size: 0.95em; }
+th { background: #313244; color: #cba6f7; padding: 10px 14px; text-align: left; border: 1px solid #45475a; }
+td { padding: 8px 14px; border: 1px solid #45475a; }
+tr:nth-child(even) td { background: #181825; }
+tr:hover td { background: #2a2a3e; }
+code { background: #313244; color: #f38ba8; padding: 2px 6px; border-radius: 4px; font-family: Consolas, monospace; font-size: 0.92em; }
+pre { background: #181825; border: 1px solid #45475a; border-radius: 8px; padding: 16px; margin: 12px 0; overflow-x: auto; }
+pre code { background: none; color: #a6e3a1; padding: 0; font-size: 0.9em; }
+blockquote { border-left: 4px solid #f9e2af; background: #181825; padding: 10px 16px; margin: 12px 0; border-radius: 0 6px 6px 0; color: #f9e2af; }
+strong { color: #f9e2af; }
+hr { border: none; border-top: 1px solid #45475a; margin: 25px 0; }
+</style>
+</head>
+<body>
+<div class="container">
+<h1>빅데이터분석기사 필기 핵심요약</h1>
+<blockquote>
+<p>통계/ML 경험자 기준 | 기출 빈출 위주 정리
+시험: 객관식 4지선다 <strong>80문항</strong> (과목당 20문항) / 합격: 평균 60점 + 과목별 40점 이상</p>
+</blockquote>
+<hr />
+<h2>1과목. 빅데이터 분석 기획 <span style="color:#e74c3c">⚠️ 암기 집중 (가장 위험한 과목)</span></h2>
+<h3>빅데이터의 특징</h3>
+<table>
+<thead>
+<tr>
+<th>구분</th>
+<th>내용</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>3V</td>
+<td>Volume(규모), Velocity(속도), Variety(다양성)</td>
+</tr>
+<tr>
+<td>5V</td>
+<td>3V + Veracity(정확성), Value(가치)</td>
+</tr>
+<tr>
+<td>7V</td>
+<td>5V + Variability(변동성), Visualization(시각화)</td>
+</tr>
+</tbody>
+</table>
+<blockquote>
+<p><span style="color:#e74c3c">기출 함정: Veracity(정확성)는 <strong>4V</strong>에 해당 → 3V 아님!</span></p>
+</blockquote>
+<h4>📝 기출 문제</h4>
+<p><strong>Q1.</strong> 빅데이터의 특징 3V에 해당하지 않는 것은?</p>
+<ol>
+<li>Volume</li>
+<li>Velocity</li>
+<li>Veracity</li>
+<li>Variety</li>
+</ol>
+<p><span style="color:#27ae60">✅ 정답: 3번 | Veracity(정확성)는 4V(5V)에 해당. 3V는 Volume·Velocity·Variety</span></p>
+<hr />
+<h3><span style="color:#e74c3c">★★★ DIKW 피라미드 (기출 단골)</span></h3>
+<p><span style="color:#e67e22"><strong>Data → Information → Knowledge → Wisdom</strong></span>
+- <strong>Data</strong>: 단순 사실, 가공 전 원시 데이터
+- <strong>Information</strong>: 데이터에 의미 부여 (가공)
+- <strong>Knowledge</strong>: 정보를 통해 도출된 규칙/패턴
+- <strong>Wisdom</strong>: 지식을 바탕으로 한 판단/행동</p>
+<h4>📝 기출 문제</h4>
+<p><strong>Q2.</strong> DIKW 피라미드의 순서로 옳은 것은?</p>
+<ol>
+<li>Data → Knowledge → Information → Wisdom</li>
+<li>Data → Information → Knowledge → Wisdom</li>
+<li>Information → Data → Knowledge → Wisdom</li>
+<li>Data → Wisdom → Information → Knowledge</li>
+</ol>
+<p><span style="color:#27ae60">✅ 정답: 2번 | Data→Information→Knowledge→Wisdom 순서 암기 필수</span></p>
+<hr />
+<h3>분석 방법론</h3>
+<h4>KDD</h4>
+<p><code>데이터 선택 → 전처리 → 변환 → 데이터마이닝 → 해석/평가</code></p>
+<h4><span style="color:#e74c3c">★★★ CRISP-DM (가장 많이 출제)</span></h4>
+<p><code>업무이해 → 데이터이해 → 데이터준비 → 모델링 → 평가 → 전개</code>
+- 비순차적, 단계 간 <strong>피드백 루프</strong> 존재
+- <span style="color:#e67e22">총 <strong>6단계</strong></span>, 가장 널리 사용되는 표준 방법론</p>
+<h4>SEMMA (SAS Institute)</h4>
+<p><code>Sample → Explore → Modify → Model → Assess</code></p>
+<h4>분석 방법론 비교</h4>
+<table>
+<thead>
+<tr>
+<th>방법론</th>
+<th>주체</th>
+<th>특징</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>KDD</td>
+<td>학계</td>
+<td>최초의 데이터마이닝 프로세스</td>
+</tr>
+<tr>
+<td><span style="color:#e74c3c"><strong>CRISP-DM</strong></span></td>
+<td>민간 컨소시엄</td>
+<td>가장 범용적, 피드백 루프</td>
+</tr>
+<tr>
+<td>SEMMA</td>
+<td>SAS</td>
+<td>도구 중심</td>
+</tr>
+</tbody>
+</table>
+<h4>📝 기출 문제</h4>
+<p><strong>Q3.</strong> CRISP-DM 방법론의 6단계를 순서대로 나열한 것은?</p>
+<ol>
+<li>업무이해 → 데이터준비 → 데이터이해 → 모델링 → 평가 → 전개</li>
+<li>데이터이해 → 업무이해 → 데이터준비 → 모델링 → 전개 → 평가</li>
+<li>업무이해 → 데이터이해 → 데이터준비 → 모델링 → 평가 → 전개</li>
+<li>업무이해 → 데이터이해 → 모델링 → 데이터준비 → 평가 → 전개</li>
+</ol>
+<p><span style="color:#27ae60">✅ 정답: 3번 | 업무→데이터이해→데이터준비→모델링→평가→전개. 단계 간 피드백 루프 존재</span></p>
+<p><strong>Q4.</strong> 다음 중 CRISP-DM에 대한 설명으로 옳지 않은 것은?</p>
+<ol>
+<li>가장 널리 사용되는 데이터 분석 표준 방법론이다</li>
+<li>총 6단계로 구성된다</li>
+<li>단계 간 피드백 루프가 존재하지 않아 순차적으로만 진행된다</li>
+<li>민간 컨소시엄에서 개발하였다</li>
+</ol>
+<p><span style="color:#27ae60">✅ 정답: 3번 | CRISP-DM은 단계 간 피드백 루프가 존재하여 비순차적 이동이 가능</span></p>
+<hr />
+<h3><span style="color:#e74c3c">★★★ 데이터 거버넌스</span></h3>
+<p><strong>3대 구성요소</strong>: <span style="color:#e67e22">원칙(Principle) + 조직(Organization) + 프로세스(Process)</span></p>
+<p><strong>데이터 관리 항목</strong>
+- <strong>마스터데이터</strong>: 여러 시스템에서 공유되는 핵심 기준 데이터 (고객, 상품 등)
+- <strong>메타데이터</strong>: 데이터에 대한 데이터 (데이터의 속성, 구조 설명)
+- <strong>데이터 사전</strong>: 데이터 요소의 정의 및 속성 집합</p>
+<h4>📝 기출 문제</h4>
+<p><strong>Q5.</strong> 데이터 거버넌스의 3대 구성요소로 옳은 것은?</p>
+<ol>
+<li>데이터, 시스템, 인프라</li>
+<li>원칙, 조직, 프로세스</li>
+<li>수집, 저장, 분석</li>
+<li>품질, 보안, 관리</li>
+</ol>
+<p><span style="color:#27ae60">✅ 정답: 2번 | 원칙(Principle) + 조직(Organization) + 프로세스(Process)</span></p>
+<hr />
+<h3>분석 성숙도 모델</h3>
+<h4>DELTA 모델</h4>
+<p><code>Data → Enterprise → Leadership → Targets → Analysts</code>
+- 1단계: 분석 시작 → 5단계: 분석 최적화</p>
+<h4>분석 준비도 평가 영역 (6가지)</h4>
+<p>분석 업무 / 인력 및 조직 / 분석 기법 / 분석 데이터 / 분석 문화 / IT 인프라</p>
+<hr />
+<h3><span style="color:#e74c3c">★★★ 개인정보 비식별화 기법</span></h3>
+<table>
+<thead>
+<tr>
+<th>기법</th>
+<th>설명</th>
+<th>예시</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>가명처리</td>
+<td>다른 이름으로 대체</td>
+<td>홍길동 → 임꺽정</td>
+</tr>
+<tr>
+<td>총계처리</td>
+<td>합계/평균으로 대체</td>
+<td>나이 → 평균나이</td>
+</tr>
+<tr>
+<td>데이터 삭제</td>
+<td>식별 값 제거</td>
+<td>주민번호 삭제</td>
+</tr>
+<tr>
+<td>데이터 범주화</td>
+<td>범위로 대체</td>
+<td>27세 → 20대</td>
+</tr>
+<tr>
+<td>데이터 마스킹</td>
+<td>일부 가림</td>
+<td>홍**동</td>
+</tr>
+</tbody>
+</table>
+<h4>비식별화 심화 모델 <span style="color:#e74c3c">★★★</span></h4>
+<ul>
+<li><span style="color:#e67e22"><strong>k-익명성</strong></span>: 같은 속성 조합이 최소 k개 이상 존재</li>
+<li><span style="color:#e67e22"><strong>l-다양성</strong></span>: k-익명성 + 민감 속성이 l개 이상 다양</li>
+<li><span style="color:#e67e22"><strong>t-근접성</strong></span>: l-다양성 + 민감 속성 분포가 전체 분포와 유사</li>
+</ul>
+<h4>📝 기출 문제</h4>
+<p><strong>Q6.</strong> 개인정보 비식별화 기법 중 "27세"를 "20대"로 변환하는 방식은?</p>
+<ol>
+<li>가명처리</li>
+<li>총계처리</li>
+<li>데이터 범주화</li>
+<li>데이터 마스킹</li>
+</ol>
+<p><span style="color:#27ae60">✅ 정답: 3번 | 구체적 값을 범위/구간으로 대체하는 것이 데이터 범주화</span></p>
+<p><strong>Q7.</strong> k-익명성, l-다양성, t-근접성의 관계로 옳은 것은?</p>
+<ol>
+<li>세 모델은 서로 독립적으로 적용된다</li>
+<li>t-근접성은 k-익명성을 포함하지 않는다</li>
+<li>l-다양성은 k-익명성을 보완하고, t-근접성은 l-다양성을 보완한다</li>
+<li>k-익명성이 가장 강력한 비식별화 모델이다</li>
+</ol>
+<p><span style="color:#27ae60">✅ 정답: 3번 | k-익명성 → l-다양성(보완) → t-근접성(보완) 순으로 강화되는 구조</span></p>
+<hr />
+<h3>빅데이터 조직/역할</h3>
+<table>
+<thead>
+<tr>
+<th>역할</th>
+<th>주요 업무</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>CDO (Chief Data Officer)</td>
+<td>데이터 전략 총괄</td>
+</tr>
+<tr>
+<td>데이터 사이언티스트</td>
+<td>분석 모델 개발, 인사이트 도출</td>
+</tr>
+<tr>
+<td>데이터 엔지니어</td>
+<td>데이터 파이프라인 구축</td>
+</tr>
+<tr>
+<td>데이터 아키텍트</td>
+<td>데이터 구조 설계</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h3>분석 과제 발굴 방법</h3>
+<ul>
+<li><strong>하향식(Top-Down)</strong>: 비즈니스 목표 → 분석 과제 도출</li>
+<li><strong>상향식(Bottom-Up)</strong>: 데이터 탐색 → 인사이트 → 과제 도출</li>
+<li><strong>디자인 씽킹</strong>: 사용자 중심, 공감-정의-아이디어-프로토타입-테스트</li>
+</ul>
+<hr />
+<h3><span style="color:#e74c3c">★★★ SECI 모델 (기출 단골)</span></h3>
+<p>지식 변환의 4가지 방식:</p>
+<table>
+<thead>
+<tr>
+<th>단계</th>
+<th>변환 방향</th>
+<th>내용</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><span style="color:#e67e22"><strong>공통화(Socialization)</strong></span></td>
+<td>암묵지 → 암묵지</td>
+<td>경험 공유, 도제식 학습</td>
+</tr>
+<tr>
+<td><span style="color:#e67e22"><strong>표출화(Externalization)</strong></span></td>
+<td>암묵지 → 형식지</td>
+<td>문서화, 매뉴얼 작성</td>
+</tr>
+<tr>
+<td><strong>연결화(Combination)</strong></td>
+<td>형식지 → 형식지</td>
+<td>문서 조합, DB 구축</td>
+</tr>
+<tr>
+<td><strong>내면화(Internalization)</strong></td>
+<td>형식지 → 암묵지</td>
+<td>학습, 체화</td>
+</tr>
+</tbody>
+</table>
+<blockquote>
+<p><span style="color:#e74c3c">기출 함정: 공통화(암묵→암묵), 표출화(암묵→형식) 방향 혼동 주의!</span></p>
+</blockquote>
+<h4>📝 기출 문제</h4>
+<p><strong>Q8.</strong> SECI 모델에서 암묵지를 형식지로 변환하는 단계는?</p>
+<ol>
+<li>공통화(Socialization)</li>
+<li>표출화(Externalization)</li>
+<li>연결화(Combination)</li>
+<li>내면화(Internalization)</li>
+</ol>
+<p><span style="color:#27ae60">✅ 정답: 2번 | 표출화(암묵지→형식지). 공통화는 암묵지→암묵지</span></p>
+<hr />
+<h3>빅데이터 처리 단계</h3>
+<p><span style="color:#e67e22"><strong>수집 → 저장 → 처리 → 분석 → 표현</strong></span></p>
+<h3>빅데이터 활용 3요소</h3>
+<p><span style="color:#e67e22"><strong>자원(데이터) + 기술(분석기법) + 인력(조직)</strong></span></p>
+<h4>📝 기출 문제</h4>
+<p><strong>Q9.</strong> 빅데이터 처리 단계를 순서대로 나열한 것은?</p>
+<ol>
+<li>수집 → 처리 → 저장 → 분석 → 표현</li>
+<li>저장 → 수집 → 처리 → 분석 → 표현</li>
+<li>수집 → 저장 → 처리 → 분석 → 표현</li>
+<li>수집 → 저장 → 분석 → 처리 → 표현</li>
+</ol>
+<p><span style="color:#27ae60">✅ 정답: 3번 | 수집→저장→처리→분석→표현</span></p>
+<hr />
+<h3><span style="color:#e74c3c">★★★ 하둡(Hadoop) 에코시스템 (기출 빈출)</span></h3>
+<p><strong>핵심 구성요소</strong></p>
+<table>
+<thead>
+<tr>
+<th>구성요소</th>
+<th>역할</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><span style="color:#e67e22"><strong>HDFS</strong></span></td>
+<td>분산 파일 시스템 (데이터 저장)</td>
+</tr>
+<tr>
+<td><span style="color:#e67e22"><strong>MapReduce</strong></span></td>
+<td>분산 처리 프레임워크</td>
+</tr>
+<tr>
+<td><span style="color:#e67e22"><strong>YARN</strong></span></td>
+<td>자원 관리 (Resource Manager)</td>
+</tr>
+</tbody>
+</table>
+<p><strong>주요 에코시스템 도구</strong></p>
+<table>
+<thead>
+<tr>
+<th>도구</th>
+<th>역할</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Hive</strong></td>
+<td>SQL 기반 데이터 쿼리</td>
+</tr>
+<tr>
+<td><strong>Pig</strong></td>
+<td>데이터 흐름 스크립트 처리</td>
+</tr>
+<tr>
+<td><strong>HBase</strong></td>
+<td>NoSQL 분산 데이터베이스</td>
+</tr>
+<tr>
+<td><strong>Spark</strong></td>
+<td>인메모리 분산 처리 (MapReduce보다 빠름)</td>
+</tr>
+<tr>
+<td><strong>Zookeeper</strong></td>
+<td>분산 시스템 조정·관리</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h3><span style="color:#e74c3c">★★★ 데이터 수집 도구 (기출 빈출)</span></h3>
+<table>
+<thead>
+<tr>
+<th>도구</th>
+<th>수집 대상</th>
+<th>특징</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><span style="color:#e67e22"><strong>Sqoop</strong></span></td>
+<td>정형 (RDB ↔ HDFS)</td>
+<td>SQL 기반 전송</td>
+</tr>
+<tr>
+<td><span style="color:#e67e22"><strong>Flume</strong></span></td>
+<td>반정형 (로그)</td>
+<td>실시간 로그 수집</td>
+</tr>
+<tr>
+<td><span style="color:#e67e22"><strong>Kafka</strong></span></td>
+<td>실시간 스트림</td>
+<td>메시지 큐, 고성능</td>
+</tr>
+<tr>
+<td><strong>Scribe</strong></td>
+<td>반정형 (로그)</td>
+<td>Facebook 개발</td>
+</tr>
+<tr>
+<td><strong>크롤링</strong></td>
+<td>비정형 (웹)</td>
+<td>웹 데이터 수집</td>
+</tr>
+</tbody>
+</table>
+<blockquote>
+<p><span style="color:#e74c3c">Sqoop=정형, Flume·Scribe=반정형(로그), 크롤링=비정형(웹)</span></p>
+</blockquote>
+<hr />
+<h3>NoSQL <span style="color:#e74c3c">★★</span></h3>
+<p><strong>BASE 특성</strong> (RDBMS의 ACID와 대비)</p>
+<ul>
+<li><strong>B</strong>asically Available: 기본적으로 가용성 보장</li>
+<li><strong>S</strong>oft state: 데이터 상태가 시간에 따라 변할 수 있음</li>
+<li><strong>E</strong>ventually consistent: 최종적으로 일관성 보장</li>
+</ul>
+<table>
+<thead>
+<tr>
+<th>구분</th>
+<th>RDBMS</th>
+<th>NoSQL</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>특성</td>
+<td>ACID</td>
+<td>BASE</td>
+</tr>
+<tr>
+<td>스키마</td>
+<td>고정</td>
+<td>유연</td>
+</tr>
+<tr>
+<td>확장</td>
+<td>수직(Scale-up)</td>
+<td><span style="color:#27ae60">수평(Scale-out)</span></td>
+</tr>
+<tr>
+<td>예시</td>
+<td>MySQL, Oracle</td>
+<td>MongoDB, HBase, Cassandra</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h3>데이터 웨어하우스(DW) 4특성 <span style="color:#e74c3c">★★</span></h3>
+<table>
+<thead>
+<tr>
+<th>특성</th>
+<th>내용</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><span style="color:#e67e22"><strong>주제 지향성</strong></span></td>
+<td>업무 기능이 아닌 주제(고객·상품) 중심</td>
+</tr>
+<tr>
+<td><span style="color:#e67e22"><strong>통합성</strong></span></td>
+<td>여러 소스를 통합한 일관된 데이터</td>
+</tr>
+<tr>
+<td><span style="color:#e67e22"><strong>시간 가변성</strong></span></td>
+<td>시간 흐름에 따른 이력 데이터 보관</td>
+</tr>
+<tr>
+<td><span style="color:#e67e22"><strong>비휘발성</strong></span></td>
+<td>한번 적재된 데이터는 삭제·변경 안 됨</td>
+</tr>
+</tbody>
+</table>
+<blockquote>
+<p><span style="color:#e74c3c">실시간 업데이트는 DW 특성 아님 → OLTP(트랜잭션 처리) 특성</span></p>
+</blockquote>
+<hr />
+<h3>분석 조직 유형 <span style="color:#e74c3c">★★</span></h3>
+<table>
+<thead>
+<tr>
+<th>유형</th>
+<th>특징</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><span style="color:#e67e22"><strong>집중형(CoE)</strong></span></td>
+<td>전사 분석 전담 조직 집중 배치</td>
+</tr>
+<tr>
+<td><strong>분산형</strong></td>
+<td>현업 각 부서에 분석 인력 배치</td>
+</tr>
+<tr>
+<td><strong>혼합형</strong></td>
+<td>집중형 + 분산형 결합</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h2>2과목. 빅데이터 탐색</h2>
+<h3>데이터 유형</h3>
+<table>
+<thead>
+<tr>
+<th>구분</th>
+<th>예시</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>정형</td>
+<td>RDB, CSV, Excel</td>
+</tr>
+<tr>
+<td>반정형</td>
+<td>JSON, XML, HTML, 로그</td>
+</tr>
+<tr>
+<td>비정형</td>
+<td>이미지, 영상, 음성, SNS</td>
+</tr>
+</tbody>
+</table>
+<h4>📝 기출 문제</h4>
+<p><strong>Q10.</strong> 다음 중 반정형 데이터에 해당하는 것은?</p>
+<ol>
+<li>관계형 데이터베이스(RDB)</li>
+<li>JSON, XML</li>
+<li>이미지, 동영상</li>
+<li>Excel 스프레드시트</li>
+</ol>
+<p><span style="color:#27ae60">✅ 정답: 2번 | JSON·XML·HTML·로그는 반정형. RDB·CSV·Excel은 정형. 이미지·영상은 비정형</span></p>
+<hr />
+<h3>척도 유형 <span style="color:#e74c3c">★★ (기출 빈출)</span></h3>
+<table>
+<thead>
+<tr>
+<th>척도</th>
+<th>특징</th>
+<th>예시</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>명목</strong></td>
+<td>분류만 가능, 순서 없음</td>
+<td>성별, 혈액형</td>
+</tr>
+<tr>
+<td><strong>순서</strong></td>
+<td>순서 있음, 간격 불균등</td>
+<td>학점(A/B/C), 순위</td>
+</tr>
+<tr>
+<td><strong>등간</strong></td>
+<td>균등 간격, 절대 0 없음</td>
+<td>온도(℃), 연도</td>
+</tr>
+<tr>
+<td><strong>비율</strong></td>
+<td>절대 0 존재, 사칙연산 가능</td>
+<td>키, 몸무게, 나이</td>
+</tr>
+</tbody>
+</table>
+<blockquote>
+<p><span style="color:#e74c3c">기출 함정: 온도(℃)는 <strong>등간</strong> 척도 → 비율 척도 아님 (0℃가 절대 0이 아님)</span></p>
+</blockquote>
+<h4>📝 기출 문제</h4>
+<p><strong>Q11.</strong> 다음 중 측정 척도가 나머지와 다른 하나는?</p>
+<ol>
+<li>성별</li>
+<li>혈액형</li>
+<li>온도(℃)</li>
+<li>선호도 순위</li>
+</ol>
+<p><span style="color:#27ae60">✅ 정답: 3번 | 성별·혈액형은 명목, 순위는 순서 척도. 온도(℃)는 등간 척도로 유일하게 다름</span></p>
+<p><strong>Q12.</strong> 온도(℃)가 비율 척도가 아닌 이유로 옳은 것은?</p>
+<ol>
+<li>순서를 매길 수 없기 때문에</li>
+<li>0℃가 절대적인 0(없음)을 의미하지 않기 때문에</li>
+<li>측정값 간 간격이 일정하지 않기 때문에</li>
+<li>사칙연산이 불가능하기 때문에</li>
+</ol>
+<p><span style="color:#27ae60">✅ 정답: 2번 | 비율 척도의 조건은 절대 0 존재. 0℃는 '온도 없음'이 아님</span></p>
+<hr />
+<h3>샘플링 기법</h3>
+<table>
+<thead>
+<tr>
+<th>방법</th>
+<th>특징</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>단순랜덤</strong></td>
+<td>완전 무작위 추출</td>
+</tr>
+<tr>
+<td><strong>층화</strong></td>
+<td>모집단을 층으로 나눈 뒤 각 층에서 추출 (불균형 데이터에 유리)</td>
+</tr>
+<tr>
+<td><strong>군집</strong></td>
+<td>집단을 무작위 선택 후 전수 조사</td>
+</tr>
+<tr>
+<td><strong>계통</strong></td>
+<td>일정 간격으로 추출 (k번째마다)</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h3>변수 선택법 <span style="color:#e74c3c">★★</span></h3>
+<table>
+<thead>
+<tr>
+<th>방법</th>
+<th>설명</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><span style="color:#e67e22"><strong>전진선택법</strong></span></td>
+<td>변수를 하나씩 추가, 유의하지 않으면 중단</td>
+</tr>
+<tr>
+<td><span style="color:#e67e22"><strong>후진제거법</strong></span></td>
+<td>전체 변수에서 하나씩 제거</td>
+</tr>
+<tr>
+<td><strong>단계적 선택법</strong></td>
+<td>추가와 제거를 반복 (전진+후진 혼합)</td>
+</tr>
+<tr>
+<td><strong>전체탐색법</strong></td>
+<td>모든 조합 탐색 → 가장 정확, 계산 비용 높음</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h3>정규성 검정 <span style="color:#e74c3c">★★</span></h3>
+<ul>
+<li><span style="color:#e67e22"><strong>Shapiro-Wilk 검정</strong></span>: 소표본(n&lt;50)에 적합, 가장 많이 사용</li>
+<li><strong>Kolmogorov-Smirnov 검정</strong>: 대표본에 적합</li>
+<li><strong>Q-Q Plot</strong>: 시각적으로 정규성 확인</li>
+<li>귀무가설: "데이터가 정규분포를 따른다" → p-value &gt; 0.05이면 정규성 만족</li>
+</ul>
+<hr />
+<h3>통계 기초 핵심</h3>
+<h4>대표값</h4>
+<ul>
+<li><strong>평균</strong>: <span style="color:#e74c3c">이상치에 민감</span></li>
+<li><strong>중앙값</strong>: <span style="color:#27ae60">이상치에 강건</span>, 왜곡 분포에 적합</li>
+<li><strong>최빈값</strong>: 범주형 데이터에 적합</li>
+</ul>
+<h4>분포 형태</h4>
+<ul>
+<li><strong>왜도(Skewness)</strong> &gt; 0 → 오른쪽 꼬리 (우측 왜곡)</li>
+<li><strong>첨도(Kurtosis)</strong> &gt; 3 → 뾰족한 분포 (<span style="color:#e67e22">정규분포 = <strong>3</strong></span>)</li>
+</ul>
+<h4>상관계수</h4>
+<ul>
+<li><strong>피어슨</strong>: 연속형, 선형 관계</li>
+<li><strong>스피어만</strong>: 순위형, 비선형 관계 (순위 기반)</li>
+<li><strong>켄달 타우</strong>: 순위형, 소표본에 적합</li>
+</ul>
+<h4>📝 기출 문제</h4>
+<p><strong>Q13.</strong> 이상치가 많은 데이터에서 대표값으로 가장 적합한 것은?</p>
+<ol>
+<li>평균</li>
+<li>중앙값</li>
+<li>분산</li>
+<li>표준편차</li>
+</ol>
+<p><span style="color:#27ae60">✅ 정답: 2번 | 중앙값은 이상치에 강건. 평균은 이상치에 민감하게 반응</span></p>
+<hr />
+<h3>결측값 처리</h3>
+<table>
+<thead>
+<tr>
+<th>방법</th>
+<th>설명</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>완전제거</td>
+<td>결측 행 삭제 (데이터 손실)</td>
+</tr>
+<tr>
+<td>평균/중앙값 대체</td>
+<td>연속형에 적합</td>
+</tr>
+<tr>
+<td>최빈값 대체</td>
+<td>범주형에 적합</td>
+</tr>
+<tr>
+<td><span style="color:#2980b9"><strong>다중대체(MI)</strong></span></td>
+<td>여러 번 대체 후 결합, <strong>가장 정교</strong></td>
+</tr>
+<tr>
+<td>KNN 대체</td>
+<td>유사 관측치 기반</td>
+</tr>
+</tbody>
+</table>
+<h4>📝 기출 문제</h4>
+<p><strong>Q14.</strong> 결측값 처리 방법 중 가장 정교하며 여러 번 대체 후 결합하는 방식은?</p>
+<ol>
+<li>완전제거법</li>
+<li>평균 대체법</li>
+<li>다중대체(MI)</li>
+<li>최빈값 대체법</li>
+</ol>
+<p><span style="color:#27ae60">✅ 정답: 3번 | 다중대체(Multiple Imputation)는 여러 번 대체 후 결합, 가장 정교한 방법</span></p>
+<hr />
+<h3>이상값(Outlier) 탐지</h3>
+<ul>
+<li><strong>IQR 방법</strong>: <span style="color:#e67e22">Q1 - 1.5×IQR 미만, Q3 + 1.5×IQR 초과</span></li>
+<li><strong>Z-score</strong>: <span style="color:#e67e22">|Z| &gt; 3</span> 이면 이상값</li>
+<li><strong>박스플롯</strong>: 시각적 확인</li>
+</ul>
+<h4>📝 기출 문제</h4>
+<p><strong>Q15.</strong> IQR을 이용한 이상값 탐지 기준으로 옳은 것은?</p>
+<ol>
+<li>Q1 - IQR 미만 또는 Q3 + IQR 초과</li>
+<li>Q1 - 1.5×IQR 미만 또는 Q3 + 1.5×IQR 초과</li>
+<li>Q1 - 2×IQR 미만 또는 Q3 + 2×IQR 초과</li>
+<li>평균 ± 2×표준편차 범위 밖</li>
+</ol>
+<p><span style="color:#27ae60">✅ 정답: 2번 | IQR 이상값 기준은 반드시 1.5 계수 암기</span></p>
+<hr />
+<h3>데이터 변환</h3>
+<table>
+<thead>
+<tr>
+<th>방법</th>
+<th>설명</th>
+<th>특징</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Min-Max 정규화</td>
+<td>[0,1] 범위로 변환</td>
+<td><span style="color:#e74c3c">이상치에 민감</span></td>
+</tr>
+<tr>
+<td>Z-score 표준화</td>
+<td>평균0, 표준편차1</td>
+<td><span style="color:#27ae60">이상치에 강건</span></td>
+</tr>
+<tr>
+<td>로그 변환</td>
+<td>우측 왜곡 분포 교정</td>
+<td>양수값만 가능</td>
+</tr>
+<tr>
+<td>구간화(Binning)</td>
+<td>연속형 → 범주형</td>
+<td>정보 손실 발생</td>
+</tr>
+</tbody>
+</table>
+<h4>📝 기출 문제</h4>
+<p><strong>Q16.</strong> 이상치가 포함된 데이터를 정규화할 때 가장 적합한 방법은?</p>
+<ol>
+<li>Min-Max 정규화</li>
+<li>Z-score 표준화</li>
+<li>로그 변환</li>
+<li>구간화(Binning)</li>
+</ol>
+<p><span style="color:#27ae60">✅ 정답: 2번 | Z-score 표준화는 이상치에 강건. Min-Max는 이상치에 민감</span></p>
+<hr />
+<h2>3과목. 빅데이터 모델링</h2>
+<h3>지도/비지도/강화학습 구분</h3>
+<table>
+<thead>
+<tr>
+<th>구분</th>
+<th>알고리즘</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>지도학습 (분류)</td>
+<td>로지스틱회귀, 의사결정나무, SVM, KNN, 나이브베이즈, 랜덤포레스트, XGBoost</td>
+</tr>
+<tr>
+<td>지도학습 (회귀)</td>
+<td>선형회귀, 릿지, 라쏘, 엘라스틱넷</td>
+</tr>
+<tr>
+<td>비지도학습</td>
+<td>K-means, 계층적 군집, DBSCAN, PCA, t-SNE</td>
+</tr>
+<tr>
+<td>강화학습</td>
+<td>Q-learning, 정책 경사법</td>
+</tr>
+</tbody>
+</table>
+<h4>📝 기출 문제</h4>
+<p><strong>Q17.</strong> 다음 중 비지도학습 알고리즘으로만 묶인 것은?</p>
+<ol>
+<li>로지스틱회귀, 의사결정나무</li>
+<li>K-means, DBSCAN, PCA</li>
+<li>랜덤포레스트, XGBoost</li>
+<li>선형회귀, 릿지, 라쏘</li>
+</ol>
+<p><span style="color:#27ae60">✅ 정답: 2번 | K-means·DBSCAN·PCA·t-SNE는 비지도학습. 나머지는 지도학습</span></p>
+<hr />
+<h3><span style="color:#e74c3c">★★★ 앙상블</span></h3>
+<table>
+<thead>
+<tr>
+<th>방법</th>
+<th>원리</th>
+<th>대표 알고리즘</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>배깅(Bagging)</strong></td>
+<td><span style="color:#2980b9"><strong>병렬</strong></span>, 복원추출 후 다수결</td>
+<td><span style="color:#e67e22"><strong>랜덤포레스트</strong></span></td>
+</tr>
+<tr>
+<td><strong>부스팅(Boosting)</strong></td>
+<td><span style="color:#e74c3c"><strong>순차</strong></span>, 오분류에 가중치</td>
+<td><span style="color:#e67e22"><strong>AdaBoost, XGBoost, LightGBM</strong></span></td>
+</tr>
+<tr>
+<td><strong>스태킹(Stacking)</strong></td>
+<td>모델 출력을 메타모델 입력으로</td>
+<td>-</td>
+</tr>
+</tbody>
+</table>
+<blockquote>
+<p><span style="color:#e74c3c">핵심 구분: 배깅=<strong>병렬</strong> / 부스팅=<strong>순차</strong></span></p>
+</blockquote>
+<h4>📝 기출 문제</h4>
+<p><strong>Q18.</strong> 앙상블 방법 중 이전 모델의 오류를 순차적으로 보완하는 방식은?</p>
+<ol>
+<li>배깅(Bagging)</li>
+<li>랜덤포레스트</li>
+<li>부스팅(Boosting)</li>
+<li>스태킹(Stacking)</li>
+</ol>
+<p><span style="color:#27ae60">✅ 정답: 3번 | 부스팅은 순차적으로 오분류 샘플에 가중치 부여. 배깅은 병렬</span></p>
+<p><strong>Q19.</strong> 랜덤포레스트(Random Forest)에 대한 설명으로 옳은 것은?</p>
+<ol>
+<li>부스팅 기반의 앙상블 방법이다</li>
+<li>여러 의사결정나무를 병렬로 학습하는 배깅 방법이다</li>
+<li>단일 모델로 분류와 회귀 모두 불가능하다</li>
+<li>순차적으로 오류를 보완하며 학습한다</li>
+</ol>
+<p><span style="color:#27ae60">✅ 정답: 2번 | 랜덤포레스트 = 배깅 + 의사결정나무 + 변수 무작위 선택</span></p>
+<hr />
+<h3>규제 회귀 <span style="color:#e74c3c">★★★</span></h3>
+<table>
+<thead>
+<tr>
+<th>방법</th>
+<th>규제</th>
+<th>특징</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>릿지(Ridge)</td>
+<td><span style="color:#2980b9"><strong>L2</strong> (제곱합)</span></td>
+<td>계수 축소, <strong>0이 되지 않음</strong></td>
+</tr>
+<tr>
+<td>라쏘(Lasso)</td>
+<td><span style="color:#e67e22"><strong>L1</strong> (절댓값합)</span></td>
+<td>계수를 <strong>0으로 만듦</strong> → 변수선택 가능</td>
+</tr>
+<tr>
+<td>엘라스틱넷</td>
+<td>L1 + L2</td>
+<td>두 방법의 혼합</td>
+</tr>
+</tbody>
+</table>
+<h4>📝 기출 문제</h4>
+<p><strong>Q20.</strong> Lasso 회귀(L1 정규화)에 대한 설명으로 옳은 것은?</p>
+<ol>
+<li>Ridge와 동일하게 계수를 0으로 만들 수 없다</li>
+<li>계수를 완전히 0으로 만들어 변수 선택 효과가 있다</li>
+<li>L2 정규화라고도 불린다</li>
+<li>과적합에 취약하다</li>
+</ol>
+<p><span style="color:#27ae60">✅ 정답: 2번 | Lasso(L1)는 계수를 0으로 만들어 변수선택 가능. Ridge(L2)는 0 안됨</span></p>
+<hr />
+<h3>의사결정나무 분할 기준</h3>
+<table>
+<thead>
+<tr>
+<th>기준</th>
+<th>사용</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>지니 지수</strong></td>
+<td>CART (분류), 불순도 지표</td>
+</tr>
+<tr>
+<td><strong>엔트로피</strong></td>
+<td>C4.5, ID3</td>
+</tr>
+<tr>
+<td><strong>분산감소</strong></td>
+<td>CART (회귀)</td>
+</tr>
+<tr>
+<td><strong>카이제곱</strong></td>
+<td>CHAID</td>
+</tr>
+</tbody>
+</table>
+<blockquote>
+<p><span style="color:#e74c3c">지니 지수: 0에 가까울수록 순수(좋음), 불순도가 낮을수록 분리 잘 된 것</span></p>
+</blockquote>
+<h4>📝 기출 문제</h4>
+<p><strong>Q21.</strong> 의사결정나무에서 CART 알고리즘이 분류 문제에 사용하는 분할 기준은?</p>
+<ol>
+<li>엔트로피</li>
+<li>정보이득</li>
+<li>지니 지수</li>
+<li>카이제곱</li>
+</ol>
+<p><span style="color:#27ae60">✅ 정답: 3번 | CART(분류)=지니 지수, CART(회귀)=분산감소, C4.5·ID3=엔트로피, CHAID=카이제곱</span></p>
+<hr />
+<h3>인공신경망 핵심 <span style="color:#e74c3c">★★ (기출 증가 추세)</span></h3>
+<table>
+<thead>
+<tr>
+<th>항목</th>
+<th>내용</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>활성화 함수</strong></td>
+<td>시그모이드(이진분류), ReLU(은닉층), 소프트맥스(다중분류)</td>
+</tr>
+<tr>
+<td><strong>역전파</strong></td>
+<td>출력 오차를 역방향으로 전파하며 가중치 갱신</td>
+</tr>
+<tr>
+<td><strong>드롭아웃</strong></td>
+<td>학습 중 일부 노드를 무작위로 비활성화 → 과적합 방지</td>
+</tr>
+<tr>
+<td><strong>배치 정규화</strong></td>
+<td>각 층의 입력을 정규화 → 학습 안정화</td>
+</tr>
+</tbody>
+</table>
+<h4>📝 기출 문제</h4>
+<p><strong>Q22.</strong> 인공신경망에서 과적합을 방지하기 위해 학습 중 일부 노드를 무작위로 비활성화하는 기법은?</p>
+<ol>
+<li>배치 정규화</li>
+<li>역전파</li>
+<li>소프트맥스</li>
+<li>드롭아웃</li>
+</ol>
+<p><span style="color:#27ae60">✅ 정답: 4번 | 드롭아웃(Dropout)은 학습 시 노드를 무작위 비활성화하여 과적합 방지</span></p>
+<hr />
+<h3>나이브 베이즈 <span style="color:#e74c3c">★★</span></h3>
+<ul>
+<li>베이즈 정리 기반 분류기</li>
+<li><span style="color:#e67e22">모든 특성이 <strong>독립</strong>이라고 가정</span> (현실적으로 강한 가정)</li>
+<li>텍스트 분류(스팸 필터)에 많이 사용</li>
+<li>계산 빠름, 소규모 데이터에도 적합</li>
+</ul>
+<hr />
+<h3>SVM (Support Vector Machine) <span style="color:#e74c3c">★★</span></h3>
+<ul>
+<li>두 클래스를 분리하는 <strong>최적의 초평면(Hyperplane)</strong> 탐색</li>
+<li><span style="color:#e67e22"><strong>마진(Margin) 최대화</strong></span>: 결정 경계와 가장 가까운 데이터(서포트 벡터) 간 거리 최대화</li>
+<li><strong>하드 마진</strong>: 완벽한 선형 분리 (이상치 불허)</li>
+<li><strong>소프트 마진</strong>: <span style="color:#2980b9">노이즈·이상치 허용, 일부 오분류 허용</span> → 현실 데이터에 적합</li>
+<li><strong>커널 함수</strong>: 비선형 데이터를 고차원으로 변환 (RBF, 다항식 커널 등)</li>
+</ul>
+<hr />
+<h3><span style="color:#e74c3c">★★★ 연관 분석 (Association Analysis)</span></h3>
+<p>장바구니 분석이라고도 함. A를 사면 B도 산다는 규칙 탐색.</p>
+<table>
+<thead>
+<tr>
+<th>지표</th>
+<th>공식</th>
+<th>의미</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><span style="color:#e67e22"><strong>지지도(Support)</strong></span></td>
+<td>P(A∩B)</td>
+<td>전체 거래 중 A와 B가 동시에 포함된 비율</td>
+</tr>
+<tr>
+<td><span style="color:#e67e22"><strong>신뢰도(Confidence)</strong></span></td>
+<td>P(B|A) = P(A∩B)/P(A)</td>
+<td>A 구매 시 B도 구매할 조건부 확률</td>
+</tr>
+<tr>
+<td><span style="color:#e67e22"><strong>향상도(Lift)</strong></span></td>
+<td>P(B|A)/P(B)</td>
+<td>A와 B의 연관성이 우연 대비 얼마나 강한가</td>
+</tr>
+</tbody>
+</table>
+<blockquote>
+<p><span style="color:#e74c3c">향상도 &gt; 1: 양의 연관, = 1: 독립, &lt; 1: 음의 연관</span></p>
+</blockquote>
+<p><strong>대표 알고리즘</strong>: Apriori (최소 지지도 이상인 항목만 탐색)</p>
+<hr />
+<h3>하이퍼파라미터 튜닝</h3>
+<table>
+<thead>
+<tr>
+<th>방법</th>
+<th>특징</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>그리드서치(Grid Search)</strong></td>
+<td>모든 조합 탐색, 확실하지만 느림</td>
+</tr>
+<tr>
+<td><strong>랜덤서치(Random Search)</strong></td>
+<td>무작위 조합 탐색, 빠름</td>
+</tr>
+<tr>
+<td><strong>베이지안 최적화</strong></td>
+<td>이전 결과를 반영해 탐색, 가장 효율적</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h3>군집 분석</h3>
+<table>
+<thead>
+<tr>
+<th>알고리즘</th>
+<th>특징</th>
+<th>단점</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>K-means</td>
+<td>빠름, 구현 쉬움</td>
+<td>K 사전 지정, 구형 군집만</td>
+</tr>
+<tr>
+<td>계층적 군집</td>
+<td>K 지정 불필요, 덴드로그램</td>
+<td>계산 비용 높음</td>
+</tr>
+<tr>
+<td>DBSCAN</td>
+<td>이상치 탐지 가능, 임의 형태</td>
+<td>밀도 파라미터 민감</td>
+</tr>
+</tbody>
+</table>
+<p><strong>군집 평가: 실루엣 계수</strong>
+- 범위: <span style="color:#e67e22"><strong>-1 ~ 1</strong></span>, <strong>1에 가까울수록 좋음</strong>
+- 군집 내 응집도 높고, 군집 간 분리도 높을수록 ↑</p>
+<h4>📝 기출 문제</h4>
+<p><strong>Q23.</strong> K-means 군집 분석에 대한 설명으로 옳지 않은 것은?</p>
+<ol>
+<li>군집 수(K)를 사전에 지정해야 한다</li>
+<li>이상치 탐지에 효과적이다</li>
+<li>구형(원형) 군집에 적합하다</li>
+<li>계산 속도가 빠르다</li>
+</ol>
+<p><span style="color:#27ae60">✅ 정답: 2번 | 이상치 탐지는 DBSCAN의 특징. K-means는 이상치에 취약</span></p>
+<hr />
+<h3>차원 축소</h3>
+<ul>
+<li><strong>PCA</strong>: 분산 최대화 방향으로 투영, 선형, 비지도</li>
+<li>주성분은 서로 <strong>직교(orthogonal)</strong></li>
+<li>고유값(eigenvalue) 큰 순서대로 선택</li>
+<li><strong>t-SNE</strong>: 비선형, 시각화 목적, 군집 구조 파악</li>
+</ul>
+<hr />
+<h3><span style="color:#e74c3c">★★★ 교차검증</span></h3>
+<table>
+<thead>
+<tr>
+<th>방법</th>
+<th>특징</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>K-Fold</td>
+<td>데이터를 K등분, K번 검증</td>
+</tr>
+<tr>
+<td><span style="color:#e67e22"><strong>Stratified K-Fold</strong></span></td>
+<td>클래스 비율 유지 → <strong>불균형 데이터</strong>에 사용</td>
+</tr>
+<tr>
+<td>LOOCV</td>
+<td>K=N, 소표본에 적합, 계산 비용 높음</td>
+</tr>
+</tbody>
+</table>
+<h4>📝 기출 문제</h4>
+<p><strong>Q24.</strong> 클래스 불균형 데이터에서 가장 적합한 교차검증 방법은?</p>
+<ol>
+<li>K-Fold</li>
+<li>Stratified K-Fold</li>
+<li>LOOCV</li>
+<li>홀드아웃(Holdout)</li>
+</ol>
+<p><span style="color:#27ae60">✅ 정답: 2번 | Stratified K-Fold는 각 폴드에서 클래스 비율을 유지하여 불균형 데이터에 적합</span></p>
+<hr />
+<h3>과적합(Overfitting) 해결</h3>
+<p>데이터 증가 / <span style="color:#2980b9">정규화(L1, L2)</span> / 드롭아웃 / 조기종료 / 교차검증</p>
+<hr />
+<h2>4과목. 빅데이터 결과 해석</h2>
+<h3><span style="color:#e74c3c">★★★ 혼동행렬</span></h3>
+<pre><code>                예측 Positive   예측 Negative
+실제 Positive       TP              FN
+실제 Negative       FP              TN
+</code></pre>
+<table>
+<thead>
+<tr>
+<th>지표</th>
+<th>공식</th>
+<th>언제 중요한가</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>정확도(Accuracy)</td>
+<td>(TP+TN) / 전체</td>
+<td><span style="color:#e74c3c">불균형 데이터에 부적합</span></td>
+</tr>
+<tr>
+<td><span style="color:#2980b9">정밀도(Precision)</span></td>
+<td>TP / (TP+FP)</td>
+<td>FP 줄이고 싶을 때 (스팸 필터)</td>
+</tr>
+<tr>
+<td><span style="color:#e67e22">재현율(Recall)</span></td>
+<td>TP / (TP+FN)</td>
+<td>FN 줄이고 싶을 때 (암 진단)</td>
+</tr>
+<tr>
+<td>F1-Score</td>
+<td>2×(P×R)/(P+R)</td>
+<td>정밀도-재현율 조화평균</td>
+</tr>
+<tr>
+<td>특이도(Specificity)</td>
+<td>TN / (TN+FP)</td>
+<td>실제 음성 중 정확히 분류</td>
+</tr>
+</tbody>
+</table>
+<h4>📝 기출 문제</h4>
+<p><strong>Q25.</strong> 암 진단 모델에서 실제 암 환자를 정상으로 잘못 분류하는 오류(FN)를 최소화하려면 어떤 지표를 최대화해야 하는가?</p>
+<ol>
+<li>정밀도(Precision)</li>
+<li>정확도(Accuracy)</li>
+<li>재현율(Recall)</li>
+<li>특이도(Specificity)</li>
+</ol>
+<p><span style="color:#27ae60">✅ 정답: 3번 | 재현율 = TP/(TP+FN). FN 줄이려면 재현율 최대화. 암진단·사기탐지에 중요</span></p>
+<p><strong>Q26.</strong> F1-Score에 대한 설명으로 옳은 것은?</p>
+<ol>
+<li>정밀도와 재현율의 산술평균이다</li>
+<li>정밀도와 재현율의 조화평균이다</li>
+<li>AUC와 동일한 개념이다</li>
+<li>회귀 모델 평가에 주로 사용된다</li>
+</ol>
+<p><span style="color:#27ae60">✅ 정답: 2번 | F1 = 2×(P×R)/(P+R), 조화평균. 산술평균 아님!</span></p>
+<hr />
+<h4>ROC 곡선 &amp; AUC</h4>
+<ul>
+<li>X축: FPR (1-특이도), Y축: TPR (재현율)</li>
+<li><span style="color:#27ae60">AUC <strong>1에 가까울수록</strong> 좋은 모델</span></li>
+<li><span style="color:#e74c3c">AUC = <strong>0.5</strong> → 랜덤 분류기와 동일 (의미 없음)</span></li>
+</ul>
+<h4>📝 기출 문제</h4>
+<p><strong>Q27.</strong> ROC 곡선의 AUC 값이 0.5일 때의 의미는?</p>
+<ol>
+<li>완벽한 분류기이다</li>
+<li>좋은 분류기이다</li>
+<li>랜덤 분류기와 동일한 수준이다</li>
+<li>최악의 분류기이다</li>
+</ol>
+<p><span style="color:#27ae60">✅ 정답: 3번 | AUC 1=완벽, AUC 0.5=랜덤 수준(무의미), AUC 0=최악</span></p>
+<hr />
+<h4>회귀 평가</h4>
+<table>
+<thead>
+<tr>
+<th>지표</th>
+<th>특징</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>MAE</td>
+<td><span style="color:#27ae60">이상치에 강건</span></td>
+</tr>
+<tr>
+<td>MSE</td>
+<td><span style="color:#e74c3c">이상치에 민감</span> (제곱)</td>
+</tr>
+<tr>
+<td>RMSE</td>
+<td>MSE의 제곱근, 단위 동일</td>
+</tr>
+<tr>
+<td>R²</td>
+<td>설명력, <span style="color:#27ae60">1에 가까울수록 좋음</span></td>
+</tr>
+</tbody>
+</table>
+<h4>📝 기출 문제</h4>
+<p><strong>Q28.</strong> 회귀 모델 평가 지표 중 이상치에 가장 민감한 것은?</p>
+<ol>
+<li>MAE</li>
+<li>MSE</li>
+<li>RMSE</li>
+<li>R²</li>
+</ol>
+<p><span style="color:#27ae60">✅ 정답: 2번 | MSE는 오차를 제곱하여 이상치 영향이 크게 증폭됨. MAE는 절댓값으로 강건</span></p>
+<hr />
+<h3><span style="color:#e74c3c">★★★ 통계 검정 선택 기준</span></h3>
+<pre><code>데이터 유형?
+├── 연속형
+│   ├── 정규성 O → 모수 검정
+│   │   ├── 2집단 독립  →  독립표본 t검정
+│   │   ├── 2집단 대응  →  대응표본 t검정
+│   │   └── 3집단 이상  →  일원분산분석 (ANOVA)
+│   └── 정규성 X → 비모수 검정
+│       ├── 2집단 독립  →  맨-휘트니 U 검정
+│       ├── 2집단 대응  →  윌콕슨 부호순위 검정
+│       └── 3집단 이상  →  크루스칼-왈리스 검정
+└── 범주형
+    └── 독립성/적합도  →  카이제곱 검정
+</code></pre>
+<h4>📝 기출 문제</h4>
+<p><strong>Q29.</strong> 정규성을 만족하는 두 독립 집단의 평균 차이를 검정할 때 적합한 방법은?</p>
+<ol>
+<li>대응표본 t검정</li>
+<li>독립표본 t검정</li>
+<li>맨-휘트니 U 검정</li>
+<li>카이제곱 검정</li>
+</ol>
+<p><span style="color:#27ae60">✅ 정답: 2번 | 정규성O + 2집단 + 독립 → 독립표본 t검정. 대응은 전후비교 등 같은 대상</span></p>
+<p><strong>Q30.</strong> 범주형 변수 간의 독립성을 검정할 때 사용하는 방법은?</p>
+<ol>
+<li>t검정</li>
+<li>ANOVA</li>
+<li>카이제곱 검정</li>
+<li>윌콕슨 검정</li>
+</ol>
+<p><span style="color:#27ae60">✅ 정답: 3번 | 범주형 데이터의 독립성·적합도 검정에는 카이제곱 검정 사용</span></p>
+<hr />
+<h3>시각화 차트 선택</h3>
+<table>
+<thead>
+<tr>
+<th>목적</th>
+<th>차트</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>분포 확인</td>
+<td>히스토그램, 박스플롯</td>
+</tr>
+<tr>
+<td>범주 비교</td>
+<td>막대그래프</td>
+</tr>
+<tr>
+<td>시계열 추세</td>
+<td>선그래프</td>
+</tr>
+<tr>
+<td>상관관계</td>
+<td>산점도, 히트맵</td>
+</tr>
+<tr>
+<td>비율/구성</td>
+<td>파이차트, 누적막대</td>
+</tr>
+<tr>
+<td>고차원 분포</td>
+<td>t-SNE, PCA 산점도</td>
+</tr>
+<tr>
+<td>지리 데이터</td>
+<td><strong>카토그램</strong>, 코로플레스맵</td>
+</tr>
+<tr>
+<td>계층 구조</td>
+<td><strong>트리맵</strong></td>
+</tr>
+<tr>
+<td>텍스트 빈도</td>
+<td><strong>워드클라우드</strong></td>
+</tr>
+<tr>
+<td>3변수 관계</td>
+<td><strong>버블차트</strong></td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h3>편향-분산 트레이드오프 <span style="color:#e74c3c">★★★ (기출 단골)</span></h3>
+<table>
+<thead>
+<tr>
+<th>상태</th>
+<th>편향</th>
+<th>분산</th>
+<th>원인</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>과소적합(Underfitting)</strong></td>
+<td><span style="color:#e74c3c">높음</span></td>
+<td>낮음</td>
+<td>모델 너무 단순</td>
+</tr>
+<tr>
+<td><strong>과적합(Overfitting)</strong></td>
+<td>낮음</td>
+<td><span style="color:#e74c3c">높음</span></td>
+<td>모델 너무 복잡</td>
+</tr>
+<tr>
+<td><strong>최적</strong></td>
+<td>낮음</td>
+<td>낮음</td>
+<td>균형 상태</td>
+</tr>
+</tbody>
+</table>
+<blockquote>
+<p><span style="color:#e74c3c">편향↑ = 과소적합 / 분산↑ = 과적합</span></p>
+</blockquote>
+<h4>📝 기출 문제</h4>
+<p><strong>Q31.</strong> 모델이 훈련 데이터에는 높은 성능을 보이지만 테스트 데이터에는 낮은 성능을 보일 때의 상태와, 이때 높은 것은?</p>
+<ol>
+<li>과소적합, 편향</li>
+<li>과적합, 편향</li>
+<li>과적합, 분산</li>
+<li>과소적합, 분산</li>
+</ol>
+<p><span style="color:#27ae60">✅ 정답: 3번 | 훈련↑ 테스트↓ = 과적합. 과적합은 분산이 높음</span></p>
+<hr />
+<h3>다중공선성(VIF) <span style="color:#e74c3c">★★</span></h3>
+<ul>
+<li>독립변수 간 높은 상관관계 → 회귀계수 불안정</li>
+<li><span style="color:#e67e22">VIF &gt; <strong>10</strong> 이면 다중공선성 문제</span></li>
+<li>해결: 변수 제거, PCA, 릿지 회귀</li>
+</ul>
+<hr />
+<h3>시계열 분석 핵심</h3>
+<ul>
+<li><strong>정상성(Stationarity)</strong>: 평균/분산이 시간에 따라 일정</li>
+<li><strong>비정상 → 정상 변환</strong>: 차분(Differencing), 로그 변환</li>
+<li><span style="color:#e67e22"><strong>ARIMA(p, d, q)</strong></span>: AR(p) + 차분(d) + MA(q)</li>
+<li>p: 자기회귀 차수 (<span style="color:#2980b9">PACF로 결정</span>)</li>
+<li>d: 차분 횟수</li>
+<li>q: 이동평균 차수 (<span style="color:#2980b9">ACF로 결정</span>)</li>
+</ul>
+<h4>📝 기출 문제</h4>
+<p><strong>Q32.</strong> ARIMA(p, d, q) 모델에서 MA(이동평균) 차수 q를 결정하는 데 사용하는 것은?</p>
+<ol>
+<li>PACF (편자기상관함수)</li>
+<li>ACF (자기상관함수)</li>
+<li>분산분석(ANOVA)</li>
+<li>정보량 기준(AIC)</li>
+</ol>
+<p><span style="color:#27ae60">✅ 정답: 2번 | ACF → MA 차수(q) 결정, PACF → AR 차수(p) 결정</span></p>
+<hr />
+<h2><span style="color:#e74c3c">기출 자주 틀리는 함정 모음</span></h2>
+<table>
+<thead>
+<tr>
+<th>함정</th>
+<th>정답</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Veracity는 3V에 해당한다</td>
+<td><span style="color:#e74c3c">❌ 4V(5V)에 해당</span></td>
+</tr>
+<tr>
+<td>온도(℃)는 비율 척도다</td>
+<td><span style="color:#e74c3c">❌ 등간 척도 (절대 0 없음)</span></td>
+</tr>
+<tr>
+<td>배깅은 순차적으로 학습한다</td>
+<td><span style="color:#e74c3c">❌ 병렬 / 순차는 부스팅</span></td>
+</tr>
+<tr>
+<td>Ridge(L2)는 변수선택이 된다</td>
+<td><span style="color:#e74c3c">❌ 변수선택은 Lasso(L1)</span></td>
+</tr>
+<tr>
+<td>F1은 정밀도-재현율의 산술평균이다</td>
+<td><span style="color:#e74c3c">❌ 조화평균</span></td>
+</tr>
+<tr>
+<td>AUC 0.5는 좋은 모델이다</td>
+<td><span style="color:#e74c3c">❌ 랜덤 수준 (의미 없음)</span></td>
+</tr>
+<tr>
+<td>SECI 표출화는 형식지→암묵지 변환이다</td>
+<td><span style="color:#e74c3c">❌ 암묵지→형식지</span></td>
+</tr>
+<tr>
+<td>다중공선성은 VIF &gt; 5이면 문제다</td>
+<td><span style="color:#e74c3c">❌ 일반적으로 VIF &gt; 10</span></td>
+</tr>
+<tr>
+<td>K-means는 군집 수를 자동 결정한다</td>
+<td><span style="color:#e74c3c">❌ K 사전 지정 필요</span></td>
+</tr>
+<tr>
+<td>MAE는 이상치에 민감하다</td>
+<td><span style="color:#e74c3c">❌ MSE/RMSE가 민감, MAE는 강건</span></td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h2><span style="color:#e74c3c">빈출 암기 포인트 (시험 전날 최종 확인)</span></h2>
+<table>
+<thead>
+<tr>
+<th>항목</th>
+<th><span style="color:#e67e22">핵심 값</span></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>문항 수</td>
+<td><span style="color:#e67e22"><strong>80문항</strong> (과목당 20문항)</span></td>
+</tr>
+<tr>
+<td>DIKW 순서</td>
+<td><span style="color:#e67e22">Data → Information → Knowledge → Wisdom</span></td>
+</tr>
+<tr>
+<td>CRISP-DM 단계 수</td>
+<td><span style="color:#e67e22"><strong>6단계</strong></span></td>
+</tr>
+<tr>
+<td>빅데이터 처리 단계</td>
+<td><span style="color:#e67e22">수집→저장→처리→분석→표현</span></td>
+</tr>
+<tr>
+<td>정규분포 첨도</td>
+<td><span style="color:#e67e22"><strong>3</strong></span></td>
+</tr>
+<tr>
+<td>IQR 이상값 기준</td>
+<td><span style="color:#e67e22">Q1-1.5×IQR / Q3+1.5×IQR</span></td>
+</tr>
+<tr>
+<td>실루엣 계수 범위</td>
+<td><span style="color:#e67e22"><strong>-1 ~ 1</strong></span></td>
+</tr>
+<tr>
+<td>AUC 랜덤 분류기</td>
+<td><span style="color:#e67e22"><strong>0.5</strong></span></td>
+</tr>
+<tr>
+<td>비식별화 3대 모델</td>
+<td><span style="color:#e67e22">k-익명성 → l-다양성 → t-근접성</span></td>
+</tr>
+<tr>
+<td>거버넌스 3요소</td>
+<td><span style="color:#e67e22">원칙 + 조직 + 프로세스</span></td>
+</tr>
+<tr>
+<td>배깅 대표 알고리즘</td>
+<td><span style="color:#e67e22">랜덤포레스트 (병렬)</span></td>
+</tr>
+<tr>
+<td>부스팅 대표 알고리즘</td>
+<td><span style="color:#e67e22">XGBoost, AdaBoost (순차)</span></td>
+</tr>
+<tr>
+<td>L1 규제</td>
+<td><span style="color:#e67e22">라쏘 (변수선택 가능, 계수=0)</span></td>
+</tr>
+<tr>
+<td>L2 규제</td>
+<td><span style="color:#e67e22">릿지 (계수 축소, 0 안됨)</span></td>
+</tr>
+<tr>
+<td>다중공선성 기준</td>
+<td><span style="color:#e67e22">VIF &gt; <strong>10</strong></span></td>
+</tr>
+<tr>
+<td>편향↑</td>
+<td><span style="color:#e67e22">과소적합 / 분산↑ = 과적합</span></td>
+</tr>
+</tbody>
+</table>
+</div>
+</body>
+</html>
