@@ -395,6 +395,443 @@ hr { border: none; border-top: 1px solid #45475a; margin: 25px 0; }
 </ol>
 <p><span style="color:#27ae60">✅ 정답: 4번 | 정확도 100% 모델은 현실에 존재하지 않음. 적절한 기준 설정이 중요</span></p>
 <hr />
+
+<h2>추가 기출문제 - 1과목 (하둡 에코시스템·NoSQL·DW·분석조직)</h2>
+<blockquote><p>출처: 수험생 복원 기반 재구성 | leechanwoo-kor.github.io, yganalyst.github.io, techblogpedia.com, dataedu.kr 참조</p></blockquote>
+<hr />
+
+<p><strong>Q41.</strong> HDFS(Hadoop Distributed File System)의 구성 요소에 대한 설명으로 옳은 것은?</p>
+<ol>
+<li>NameNode는 실제 데이터를 블록 단위로 저장한다</li>
+<li>DataNode는 파일의 메타데이터(파일명, 경로, 권한)를 관리한다</li>
+<li>NameNode는 파일 메타데이터를 관리하고, DataNode는 실제 데이터 블록을 저장한다</li>
+<li>Secondary NameNode는 NameNode 장애 시 즉시 대체 역할을 한다</li>
+</ol>
+<p><span style="color:#27ae60">✅ 정답: 3번 | NameNode=메타데이터 관리(마스터), DataNode=실제 데이터 블록 저장(슬레이브). Secondary NameNode는 즉시 대체가 아닌 메타데이터 백업 역할</span></p>
+<hr />
+
+<p><strong>Q42.</strong> MapReduce의 처리 단계 순서로 올바른 것은?</p>
+<ol>
+<li>Map → Shuffle → Sort → Reduce</li>
+<li>Reduce → Map → Sort → Shuffle</li>
+<li>Map → Sort → Shuffle → Reduce</li>
+<li>Split → Map → Combine → Shuffle → Sort → Reduce</li>
+</ol>
+<p><span style="color:#27ae60">✅ 정답: 4번 | MapReduce 전체 흐름: 입력분할(Split) → Map → Combine(선택) → Shuffle → Sort → Reduce → 출력</span></p>
+<hr />
+
+<p><strong>Q43.</strong> YARN(Yet Another Resource Negotiator)에 대한 설명으로 옳지 않은 것은?</p>
+<ol>
+<li>하둡 2.x에서 도입된 클러스터 자원 관리 시스템이다</li>
+<li>MapReduce 외 다양한 데이터 처리 프레임워크(Spark 등)를 지원한다</li>
+<li>ResourceManager와 NodeManager로 구성된다</li>
+<li>MapReduce의 처리 속도를 높이기 위해 인메모리 연산 방식을 도입하였다</li>
+</ol>
+<p><span style="color:#27ae60">✅ 정답: 4번 | 인메모리 연산은 Apache Spark의 특징. YARN은 자원 관리(ResourceManager)와 작업 실행(NodeManager+ApplicationMaster)을 분리한 구조</span></p>
+<hr />
+
+<p><strong>Q44.</strong> 아파치 카프카(Apache Kafka)의 특징으로 옳지 않은 것은?</p>
+<ol>
+<li>발행-구독(Publish-Subscribe) 메시지 큐 방식을 사용한다</li>
+<li>대용량 실시간 로그 데이터 처리에 적합하다</li>
+<li>RDBMS에서 HDFS로 정형 데이터를 배치 전송하는 데 특화되어 있다</li>
+<li>토픽(Topic) 단위로 메시지를 분류하여 저장한다</li>
+</ol>
+<p><span style="color:#27ae60">✅ 정답: 3번 | RDBMS ↔ HDFS 정형 데이터 배치 전송은 Sqoop의 역할. Kafka는 실시간 스트리밍 메시지 플랫폼</span></p>
+<hr />
+
+<p><strong>Q45.</strong> Sqoop과 Flume의 특징을 비교한 내용으로 옳은 것은?</p>
+<ol>
+<li>Sqoop은 로그 데이터, Flume은 관계형 DB 데이터 수집에 사용된다</li>
+<li>Sqoop은 RDBMS ↔ HDFS 간 정형 데이터 전송, Flume은 분산형 대용량 로그(반정형) 수집에 사용된다</li>
+<li>Sqoop과 Flume 모두 실시간 스트리밍 처리를 주목적으로 한다</li>
+<li>Flume은 SQL 기반 배치 처리, Sqoop은 이벤트 기반 수집을 담당한다</li>
+</ol>
+<p><span style="color:#27ae60">✅ 정답: 2번 | Sqoop=정형(RDB↔HDFS 배치), Flume=반정형(로그·이벤트 수집, 에이전트-채널-싱크 구조), Kafka=실시간 스트리밍</span></p>
+<hr />
+
+<p><strong>Q46.</strong> NoSQL 데이터베이스 유형과 대표 제품의 연결이 옳지 않은 것은?</p>
+<ol>
+<li>Key-Value Store — Redis, DynamoDB</li>
+<li>Document Store — MongoDB, CouchDB</li>
+<li>Column-Family Store — HBase, Cassandra</li>
+<li>Graph DB — MySQL, PostgreSQL</li>
+</ol>
+<p><span style="color:#27ae60">✅ 정답: 4번 | MySQL·PostgreSQL은 RDBMS. Graph DB 대표: Neo4j, Amazon Neptune</span></p>
+<hr />
+
+<p><strong>Q47.</strong> RDBMS와 NoSQL의 비교 설명으로 옳지 않은 것은?</p>
+<ol>
+<li>RDBMS는 ACID 특성을 보장하고, NoSQL은 주로 BASE 특성을 따른다</li>
+<li>RDBMS는 수직 확장(Scale-up), NoSQL은 수평 확장(Scale-out)에 유리하다</li>
+<li>NoSQL은 고정 스키마(Fixed Schema)를 사용하여 데이터 일관성을 높인다</li>
+<li>RDBMS는 정형 데이터, NoSQL은 정형·반정형·비정형 데이터 모두 처리 가능하다</li>
+</ol>
+<p><span style="color:#27ae60">✅ 정답: 3번 | NoSQL의 특징 중 하나가 유연한 스키마(Schema-less 또는 Dynamic Schema). 고정 스키마는 RDBMS의 특징</span></p>
+<hr />
+
+<p><strong>Q48.</strong> 데이터 웨어하우스(Data Warehouse)와 데이터 마트(Data Mart)의 차이로 옳은 것은?</p>
+<ol>
+<li>데이터 마트는 전사적 데이터를 통합 저장하고, 데이터 웨어하우스는 특정 부서용 소규모 저장소이다</li>
+<li>데이터 웨어하우스는 전사적 통합 저장소이고, 데이터 마트는 특정 주제·부서에 맞게 추출한 소규모 저장소이다</li>
+<li>데이터 웨어하우스와 데이터 마트는 동일한 개념이다</li>
+<li>데이터 마트는 OLTP 시스템이고, 데이터 웨어하우스는 실시간 트랜잭션 처리 시스템이다</li>
+</ol>
+<p><span style="color:#27ae60">✅ 정답: 2번 | DW=전사 통합(대규모, 주제지향·통합·시간가변·비휘발성), DM=DW에서 추출한 특정 부서/주제용 소규모 저장소</span></p>
+<hr />
+
+<p><strong>Q49.</strong> OLAP(Online Analytical Processing)에 대한 설명으로 옳지 않은 것은?</p>
+<ol>
+<li>다차원 데이터 분석을 지원한다</li>
+<li>드릴다운(Drill-down)은 요약 데이터에서 더 세부적인 데이터로 내려가는 연산이다</li>
+<li>롤업(Roll-up)은 세부 데이터를 집계하여 상위 수준으로 올라가는 연산이다</li>
+<li>실시간 트랜잭션 처리(OLTP) 시스템과 동일한 목적으로 사용된다</li>
+</ol>
+<p><span style="color:#27ae60">✅ 정답: 4번 | OLAP=분석·의사결정 지원(읽기 중심), OLTP=실시간 트랜잭션 처리(쓰기 중심). 목적이 다름</span></p>
+<hr />
+
+<p><strong>Q50.</strong> 분석 조직 유형에 대한 설명으로 옳은 것은?</p>
+<ol>
+<li>집중형 구조는 분석 전문가를 각 현업 부서에 분산 배치하는 방식이다</li>
+<li>분산형 구조는 전사 분석 전담 조직(CoE)을 중앙에 집중시키는 방식이다</li>
+<li>혼합형 구조는 집중형과 분산형을 결합하여 전담 조직과 현업 부서 모두에 분석 인력을 배치한다</li>
+<li>기능형 구조는 분석 전문성이 가장 높은 조직 형태이다</li>
+</ol>
+<p><span style="color:#27ae60">✅ 정답: 3번 | 집중형(CoE)=전담 중앙집중, 분산형=현업 각 부서 배치, 혼합형=두 방식 결합(가장 이상적). 분산형은 현업 친화적이나 중복 비효율 발생 가능</span></p>
+<hr />
+
+<p><strong>Q51.</strong> 하둡 에코시스템 중 SQL-like 쿼리를 사용하여 HDFS 데이터를 분석할 수 있는 도구는?</p>
+<ol>
+<li>Sqoop</li>
+<li>Flume</li>
+<li>Hive</li>
+<li>Kafka</li>
+</ol>
+<p><span style="color:#27ae60">✅ 정답: 3번 | Hive: HiveQL(SQL 유사 언어)로 HDFS 데이터를 분석. MapReduce로 변환 실행. Sqoop=DB연동, Flume=로그수집, Kafka=스트리밍</span></p>
+<hr />
+
+<p><strong>Q52.</strong> 다음 중 NoSQL의 BASE 특성에 해당하지 않는 것은?</p>
+<ol>
+<li>BA (Basically Available): 기본적 가용성 보장</li>
+<li>S (Soft State): 일정 시간 후 상태가 변할 수 있음</li>
+<li>E (Eventual Consistency): 최종적 일관성 보장</li>
+<li>C (Consistency): 모든 트랜잭션 후 즉각적 일관성 보장</li>
+</ol>
+<p><span style="color:#27ae60">✅ 정답: 4번 | BASE = Basically Available + Soft State + Eventual Consistency. 즉각적 일관성(C)은 ACID의 특성</span></p>
+<hr />
+
+<h2>추가 기출문제 - 2과목 (변수선택법·정규성검정·샘플링)</h2>
+<blockquote><p>출처: 수험생 복원 기반 재구성 | datascienceschool.net, leechanwoo-kor.github.io 참조</p></blockquote>
+<hr />
+
+<p><strong>Q53.</strong> 전진선택법(Forward Selection)에 대한 설명으로 옳은 것은?</p>
+<ol>
+<li>모든 변수를 포함한 상태에서 시작하여 기여도가 낮은 변수를 하나씩 제거한다</li>
+<li>변수가 없는 상태에서 시작하여 설명력이 가장 높은 변수를 하나씩 추가한다</li>
+<li>변수 추가와 제거를 반복하며 최적 변수 집합을 선택한다</li>
+<li>가능한 모든 변수 조합을 탐색하여 최적 모형을 선택한다</li>
+</ol>
+<p><span style="color:#27ae60">✅ 정답: 2번 | 전진선택법: 변수 없음→AIC/F통계량 기준 가장 유의한 변수 순차 추가. 후진제거=전체→제거, 단계적=추가+제거 반복</span></p>
+<hr />
+
+<p><strong>Q54.</strong> 변수 선택 방법 중 후진제거법(Backward Elimination)의 특징으로 옳지 않은 것은?</p>
+<ol>
+<li>모든 변수를 포함한 완전 모형에서 시작한다</li>
+<li>유의하지 않은 변수를 하나씩 제거해 나간다</li>
+<li>전진선택법보다 계산량이 적다</li>
+<li>p값 또는 AIC를 기준으로 제거할 변수를 선택한다</li>
+</ol>
+<p><span style="color:#27ae60">✅ 정답: 3번 | 후진제거법은 전체 변수로 시작하므로 초기 계산량이 전진선택법보다 많음. 변수 수가 많을수록 초기 모형의 계산 비용이 큼</span></p>
+<hr />
+
+<p><strong>Q55.</strong> 단계적 선택법(Stepwise Selection)에 대한 설명으로 옳은 것은?</p>
+<ol>
+<li>전진선택만 수행하여 변수를 추가한다</li>
+<li>후진제거만 수행하여 변수를 제거한다</li>
+<li>변수 추가와 제거를 반복하며, 이미 추가된 변수도 유의하지 않으면 제거할 수 있다</li>
+<li>모든 가능한 변수 조합을 탐색하는 완전 탐색법이다</li>
+</ol>
+<p><span style="color:#27ae60">✅ 정답: 3번 | 단계적 선택법: 전진선택+후진제거를 반복. 이미 추가된 변수도 후속 변수 추가 후 유의하지 않으면 제거 가능. 전진선택법의 단점 보완</span></p>
+<hr />
+
+<p><strong>Q56.</strong> Shapiro-Wilk 검정에 대한 설명으로 옳은 것은?</p>
+<ol>
+<li>두 집단의 분산이 동일한지 검정한다</li>
+<li>표본이 정규분포를 따르는지 검정한다</li>
+<li>범주형 변수 간의 독립성을 검정한다</li>
+<li>세 집단 이상의 평균이 동일한지 검정한다</li>
+</ol>
+<p><span style="color:#27ae60">✅ 정답: 2번 | Shapiro-Wilk: 정규성 검정의 대표적 방법. 특히 소표본(n&lt;50)에서 유용. 귀무가설: "데이터는 정규분포를 따른다"</span></p>
+<hr />
+
+<p><strong>Q57.</strong> Shapiro-Wilk 검정의 귀무가설(H₀)로 옳은 것은?</p>
+<ol>
+<li>데이터는 정규분포를 따르지 않는다</li>
+<li>데이터는 정규분포를 따른다</li>
+<li>두 집단의 분산은 동일하다</li>
+<li>두 변수는 서로 독립이다</li>
+</ol>
+<p><span style="color:#27ae60">✅ 정답: 2번 | Shapiro-Wilk H₀: 정규분포를 따름. p-value &lt; 0.05이면 귀무가설 기각 → 정규분포 아님. 정규성 검정 방법: Shapiro-Wilk, Kolmogorov-Smirnov, Q-Q plot</span></p>
+<hr />
+
+<p><strong>Q58.</strong> 표본 추출 방법 중 층화추출법(Stratified Sampling)에 대한 설명으로 옳은 것은?</p>
+<ol>
+<li>모집단을 여러 군집으로 나누고, 일부 군집을 무작위 선택하여 해당 군집 전체를 조사한다</li>
+<li>모집단을 동질적인 층(Stratum)으로 나누고, 각 층에서 독립적으로 표본을 추출한다</li>
+<li>첫 번째 표본을 무작위로 선택하고 이후 일정 간격으로 표본을 추출한다</li>
+<li>모집단에서 완전히 무작위로 표본을 추출한다</li>
+</ol>
+<p><span style="color:#27ae60">✅ 정답: 2번 | 층화추출: 모집단을 동질적 층으로 분류→각 층에서 비례·균등 추출. 군집추출=일부 군집 선택 후 전수조사, 계통추출=일정 간격 추출</span></p>
+<hr />
+
+<p><strong>Q59.</strong> 다음 중 비확률 표본 추출 방법에 해당하는 것은?</p>
+<ol>
+<li>단순무작위추출</li>
+<li>층화추출</li>
+<li>계통추출</li>
+<li>편의추출(Convenience Sampling)</li>
+</ol>
+<p><span style="color:#27ae60">✅ 정답: 4번 | 편의추출=연구자 편의에 따라 임의 선택(비확률). 단순무작위·층화·계통·군집추출은 확률 표본 추출법</span></p>
+<hr />
+
+<p><strong>Q60.</strong> 군집추출법(Cluster Sampling)과 층화추출법(Stratified Sampling)의 차이로 옳은 것은?</p>
+<ol>
+<li>층화추출은 일부 집단만 선택하지만, 군집추출은 모든 층에서 표본을 추출한다</li>
+<li>군집추출은 이질적인 군집들 중 일부를 선택하고, 층화추출은 동질적인 층 모두에서 추출한다</li>
+<li>두 방법 모두 동일한 방식으로 표본을 추출한다</li>
+<li>층화추출이 군집추출보다 항상 표본 오차가 크다</li>
+</ol>
+<p><span style="color:#27ae60">✅ 정답: 2번 | 군집추출: 이질적인 군집(내부 이질, 군집 간 동질) 중 일부 군집 선택→전수/추출. 층화추출: 동질적 층(층 내 동질) 모두에서 추출→정밀도 높음</span></p>
+<hr />
+
+<p><strong>Q61.</strong> 표본 크기 결정 시 고려 요인으로 옳지 않은 것은?</p>
+<ol>
+<li>허용 오차(Margin of Error)</li>
+<li>신뢰 수준(Confidence Level)</li>
+<li>모집단의 변동성(분산)</li>
+<li>연구자의 국적</li>
+</ol>
+<p><span style="color:#27ae60">✅ 정답: 4번 | 표본 크기 결정 요인: 신뢰수준, 허용오차, 모집단 분산(p), 모집단 규모(유한 모집단). 연구자 국적은 무관</span></p>
+<hr />
+
+<h2>추가 기출문제 - 3과목 (SVM·연관분석·ARIMA·KNN)</h2>
+<blockquote><p>출처: 수험생 복원 기반 재구성 | leechanwoo-kor.github.io, datascienceschool.net, angeloyeo.github.io 참조</p></blockquote>
+<hr />
+
+<p><strong>Q62.</strong> 서포트 벡터 머신(SVM)에 대한 설명으로 옳지 않은 것은?</p>
+<ol>
+<li>두 클래스 사이의 마진(Margin)을 최대화하는 결정 경계를 찾는다</li>
+<li>서포트 벡터(Support Vector)는 결정 경계에 가장 가까운 데이터 포인트들이다</li>
+<li>커널 트릭(Kernel Trick)을 사용하여 비선형 분류가 가능하다</li>
+<li>SVM은 비지도 학습 알고리즘으로 레이블 없이 군집을 형성한다</li>
+</ol>
+<p><span style="color:#27ae60">✅ 정답: 4번 | SVM은 지도 학습(Supervised Learning) 기반 분류/회귀 알고리즘. 비지도 학습이 아님</span></p>
+<hr />
+
+<p><strong>Q63.</strong> SVM에서 소프트 마진(Soft Margin)과 하드 마진(Hard Margin)에 관한 설명으로 옳은 것은?</p>
+<ol>
+<li>하드 마진은 일부 오분류를 허용하여 더 유연한 결정 경계를 만든다</li>
+<li>소프트 마진은 슬랙 변수(Slack Variable)를 도입하여 완벽한 분리가 어려운 경우에도 적용 가능하다</li>
+<li>소프트 마진은 선형 분리 불가능한 데이터에 사용할 수 없다</li>
+<li>하드 마진과 소프트 마진은 동일한 개념이다</li>
+</ol>
+<p><span style="color:#27ae60">✅ 정답: 2번 | 소프트 마진: 슬랙 변수(ξ) 도입→일부 오분류 허용→노이즈에 강인. 하드 마진: 완벽한 선형 분리 가정→현실 데이터에 과적합 위험</span></p>
+<hr />
+
+<p><strong>Q64.</strong> SVM에서 커널 함수(Kernel Function)를 사용하는 이유로 가장 적절한 것은?</p>
+<ol>
+<li>학습 속도를 높이기 위해</li>
+<li>저차원 공간에서 선형 분리가 불가능한 데이터를 고차원 공간에서 분리하기 위해</li>
+<li>과적합을 방지하기 위해</li>
+<li>클래스 불균형 문제를 해결하기 위해</li>
+</ol>
+<p><span style="color:#27ae60">✅ 정답: 2번 | 커널 트릭: 명시적 고차원 변환 없이 내적 계산으로 고차원 매핑 효과. 대표 커널: 선형, 다항식, RBF(가우시안), 시그모이드</span></p>
+<hr />
+
+<p><strong>Q65.</strong> 연관 분석에서 신뢰도(Confidence)의 계산식으로 옳은 것은?</p>
+<ol>
+<li>P(A ∩ B)</li>
+<li>P(A ∩ B) / P(A)</li>
+<li>P(A ∩ B) / (P(A) × P(B))</li>
+<li>P(A ∩ B) / P(B)</li>
+</ol>
+<p><span style="color:#27ae60">✅ 정답: 2번 | 신뢰도(Confidence) = P(A∩B)/P(A) = P(B|A). 지지도=P(A∩B), 향상도=P(A∩B)/(P(A)×P(B)) = 신뢰도/P(B)</span></p>
+<hr />
+
+<p><strong>Q66.</strong> 연관 분석에서 향상도(Lift)가 1보다 클 때의 의미로 옳은 것은?</p>
+<ol>
+<li>A와 B는 서로 독립적인 관계이다</li>
+<li>A가 있을 때 B가 발생할 확률이 B의 전체 발생 확률보다 낮다</li>
+<li>A와 B는 음의 연관 관계이다</li>
+<li>A가 있을 때 B가 발생할 확률이 B의 전체 발생 확률보다 높다 (양의 연관)</li>
+</ol>
+<p><span style="color:#27ae60">✅ 정답: 4번 | 향상도&gt;1: 양의 연관(A→B 시너지), =1: 독립, &lt;1: 음의 연관. 향상도=신뢰도/P(B)=P(A∩B)/(P(A)×P(B))</span></p>
+<hr />
+
+<p><strong>Q67.</strong> 다음 장바구니 데이터에서 {우유}→{빵} 규칙의 지지도(Support)를 구하면? (전체 거래 10건 중 우유와 빵이 함께 포함된 거래 4건, 우유만 포함된 거래 2건)</p>
+<ol>
+<li>0.2</li>
+<li>0.4</li>
+<li>0.6</li>
+<li>0.67</li>
+</ol>
+<p><span style="color:#27ae60">✅ 정답: 2번 | 지지도 = (우유∩빵 거래 수)/전체 거래 수 = 4/10 = 0.4</span></p>
+<hr />
+
+<p><strong>Q68.</strong> ARIMA(p,d,q) 모형에서 각 파라미터의 의미로 옳은 것은?</p>
+<ol>
+<li>p=이동평균 차수, d=차분 횟수, q=자기회귀 차수</li>
+<li>p=자기회귀 차수, d=차분 횟수, q=이동평균 차수</li>
+<li>p=계절성 주기, d=추세, q=잔차</li>
+<li>p=차분 횟수, d=자기회귀 차수, q=이동평균 차수</li>
+</ol>
+<p><span style="color:#27ae60">✅ 정답: 2번 | ARIMA(p,d,q): p=AR(자기회귀) 차수, d=차분(I: Integrated) 횟수, q=MA(이동평균) 차수. 비정상 시계열→d회 차분→정상화</span></p>
+<hr />
+
+<p><strong>Q69.</strong> 시계열 분석에서 정상성(Stationarity) 조건으로 옳은 것은?</p>
+<ol>
+<li>시간에 따라 평균이 변하고 분산이 일정한 시계열</li>
+<li>평균, 분산, 자기공분산이 시간에 관계없이 일정한 시계열</li>
+<li>추세(Trend)와 계절성(Seasonality)이 존재하는 시계열</li>
+<li>분산은 변해도 되지만 평균은 일정해야 하는 시계열</li>
+</ol>
+<p><span style="color:#27ae60">✅ 정답: 2번 | 정상 시계열 조건: ①평균이 일정, ②분산이 일정, ③공분산이 시차에만 의존(시점 무관). ARIMA 적용 전 차분(Differencing)으로 정상화 필요</span></p>
+<hr />
+
+<p><strong>Q70.</strong> KNN(K-최근접 이웃) 알고리즘에서 K값 선택에 대한 설명으로 옳은 것은?</p>
+<ol>
+<li>K가 클수록 결정 경계가 복잡해지고 과적합 위험이 높아진다</li>
+<li>K=1이면 훈련 데이터에 대해 항상 100% 정확도를 보인다</li>
+<li>K값이 클수록 편향(Bias)이 감소하고 분산(Variance)이 증가한다</li>
+<li>K는 항상 홀수로 설정해야 한다</li>
+</ol>
+<p><span style="color:#27ae60">✅ 정답: 2번 | K=1: 자기 자신이 가장 가까운 이웃 → 훈련 정확도 100%(과적합). K↑: 편향↑, 분산↓(결정경계 단순). K=짝수는 동률 발생 가능하여 홀수 권장하지만 필수는 아님</span></p>
+<hr />
+
+<p><strong>Q71.</strong> KNN 알고리즘의 단점으로 옳지 않은 것은?</p>
+<ol>
+<li>예측 시 모든 훈련 데이터와 거리를 계산해야 하므로 데이터가 많을수록 느리다</li>
+<li>특성(Feature) 스케일에 민감하므로 정규화/표준화가 필요하다</li>
+<li>모델 학습 단계가 없어 훈련 시간이 매우 짧다(게으른 학습)</li>
+<li>차원이 높아질수록 성능이 향상되는 특성이 있다</li>
+</ol>
+<p><span style="color:#27ae60">✅ 정답: 4번 | KNN은 차원의 저주(Curse of Dimensionality) 문제: 고차원일수록 데이터 밀도 희박→거리 의미 감소→성능 저하</span></p>
+<hr />
+
+<p><strong>Q72.</strong> 연관 규칙 마이닝(Apriori 알고리즘)의 특징으로 옳은 것은?</p>
+<ol>
+<li>하향식(Top-down) 방식으로 빈발 항목집합을 생성한다</li>
+<li>최소 지지도(Minimum Support)를 만족하는 항목집합만 탐색한다</li>
+<li>향상도만을 기준으로 연관 규칙을 선별한다</li>
+<li>순차적 패턴 분석에만 사용된다</li>
+</ol>
+<p><span style="color:#27ae60">✅ 정답: 2번 | Apriori 알고리즘: 상향식(Bottom-up), 최소 지지도 기반 빈발 항목집합 탐색, 최소 신뢰도로 규칙 생성. "비빈발 항목집합의 모든 부분집합도 비빈발" 성질 활용</span></p>
+<hr />
+
+<h2>추가 기출문제 - 4과목 (다중공선성·편향-분산·하이퍼파라미터)</h2>
+<blockquote><p>출처: 수험생 복원 기반 재구성 | datascienceschool.net, leechanwoo-kor.github.io 참조</p></blockquote>
+<hr />
+
+<p><strong>Q73.</strong> 분산팽창요인(VIF, Variance Inflation Factor)에 대한 설명으로 옳지 않은 것은?</p>
+<ol>
+<li>다중공선성을 진단하는 지표이다</li>
+<li>VIF &gt; 10이면 심각한 다중공선성 문제가 있다고 판단한다</li>
+<li>VIF 값이 1에 가까울수록 다중공선성이 심각하다</li>
+<li>VIF가 크면 해당 독립변수는 다른 독립변수들과 강한 선형관계가 있다</li>
+</ol>
+<p><span style="color:#27ae60">✅ 정답: 3번 | VIF=1: 다중공선성 없음, 1&lt;VIF&lt;4: 보통, 4&lt;VIF&lt;10: 다중공선성 존재, VIF&gt;10: 심각. VIF가 1에 가까울수록 독립변수 간 독립적</span></p>
+<hr />
+
+<p><strong>Q74.</strong> 다중공선성(Multicollinearity) 문제를 진단하는 방법으로 옳지 않은 것은?</p>
+<ol>
+<li>VIF(분산팽창요인) 계산</li>
+<li>조건지수(Condition Index) 확인</li>
+<li>독립변수 간 상관계수 확인</li>
+<li>ROC 곡선 분석</li>
+</ol>
+<p><span style="color:#27ae60">✅ 정답: 4번 | ROC 곡선은 분류 모델의 성능 평가 도구. 다중공선성 진단: VIF, 조건지수(&gt;30 심각), 상관계수 행렬, 고유값 분석</span></p>
+<hr />
+
+<p><strong>Q75.</strong> 다중공선성이 발생했을 때 해결 방법으로 옳지 않은 것은?</p>
+<ol>
+<li>상관성이 높은 변수 중 하나를 제거한다</li>
+<li>주성분 분석(PCA)을 이용해 변수를 변환한다</li>
+<li>릿지 회귀(Ridge Regression)를 사용한다</li>
+<li>훈련 데이터를 더 많이 수집하면 다중공선성이 자동으로 해소된다</li>
+</ol>
+<p><span style="color:#27ae60">✅ 정답: 4번 | 데이터 추가 수집은 다중공선성을 직접 해결하지 않음. 해결법: 변수 제거, 주성분 회귀(PCR), 릿지/라쏘 회귀, 변수 결합</span></p>
+<hr />
+
+<p><strong>Q76.</strong> 편향-분산 트레이드오프(Bias-Variance Tradeoff)에 대한 설명으로 옳은 것은?</p>
+<ol>
+<li>모델 복잡도가 증가하면 편향과 분산이 모두 감소한다</li>
+<li>단순한 모델은 편향이 낮고 분산이 높다</li>
+<li>모델 복잡도가 증가하면 편향은 감소하지만 분산은 증가하는 트레이드오프가 발생한다</li>
+<li>최적 모델은 편향=0, 분산=0인 경우이다</li>
+</ol>
+<p><span style="color:#27ae60">✅ 정답: 3번 | 모델 복잡도↑: 편향↓, 분산↑(과적합). 단순 모델: 편향↑, 분산↓(과소적합). 최적 모델=총 오차(편향²+분산+노이즈) 최소화</span></p>
+<hr />
+
+<p><strong>Q77.</strong> 과소적합(Underfitting) 모델의 특징과 해결 방법으로 옳은 것은?</p>
+<ol>
+<li>훈련 오차가 낮고 검증 오차가 높다 → 더 많은 훈련 데이터 필요</li>
+<li>훈련 오차와 검증 오차 모두 높다 → 더 복잡한 모델 사용</li>
+<li>훈련 오차가 높고 검증 오차가 낮다 → 정규화 적용</li>
+<li>훈련 오차와 검증 오차 모두 낮다 → 모델 단순화 필요</li>
+</ol>
+<p><span style="color:#27ae60">✅ 정답: 2번 | 과소적합: 훈련·검증 오차 모두 높음(고편향). 해결: 더 복잡한 모델, 특성 추가, 정규화 감소. 과적합: 훈련↓ 검증↑(고분산) → 정규화, 데이터 추가</span></p>
+<hr />
+
+<p><strong>Q78.</strong> 하이퍼파라미터(Hyperparameter)와 파라미터(Parameter)의 차이로 옳은 것은?</p>
+<ol>
+<li>파라미터는 훈련 전 사람이 설정하고, 하이퍼파라미터는 학습을 통해 자동으로 결정된다</li>
+<li>하이퍼파라미터는 훈련 전 사람이 설정하고, 파라미터는 학습을 통해 자동으로 결정된다</li>
+<li>파라미터와 하이퍼파라미터는 모두 학습을 통해 결정된다</li>
+<li>하이퍼파라미터는 모델의 가중치(Weight)를 의미한다</li>
+</ol>
+<p><span style="color:#27ae60">✅ 정답: 2번 | 파라미터=학습으로 결정(가중치, 편향 등), 하이퍼파라미터=사람이 사전에 설정(학습률, K값, 트리 깊이, 정규화 강도 등)</span></p>
+<hr />
+
+<p><strong>Q79.</strong> 그리드 서치(Grid Search)와 랜덤 서치(Random Search)의 비교로 옳은 것은?</p>
+<ol>
+<li>그리드 서치는 지정 범위 내 모든 조합을 탐색하고, 랜덤 서치는 무작위 조합을 탐색한다</li>
+<li>랜덤 서치가 그리드 서치보다 항상 더 좋은 하이퍼파라미터를 찾는다</li>
+<li>그리드 서치가 랜덤 서치보다 계산 시간이 항상 짧다</li>
+<li>두 방법 모두 베이지안 최적화(Bayesian Optimization)의 일종이다</li>
+</ol>
+<p><span style="color:#27ae60">✅ 정답: 1번 | 그리드 서치: 모든 격자 조합 탐색(확실하나 계산 비용 높음), 랜덤 서치: 무작위 탐색(빠르고 고차원에 유리). 베이지안 최적화는 별개의 방법</span></p>
+<hr />
+
+<p><strong>Q80.</strong> 베이지안 최적화(Bayesian Optimization)에 대한 설명으로 옳은 것은?</p>
+<ol>
+<li>모든 하이퍼파라미터 조합을 격자 형태로 탐색한다</li>
+<li>이전 시도 결과를 바탕으로 다음에 탐색할 하이퍼파라미터 영역을 스마트하게 선택한다</li>
+<li>완전히 무작위로 하이퍼파라미터를 선택하여 탐색한다</li>
+<li>하이퍼파라미터 최적화가 아닌 모델 구조 탐색에만 사용된다</li>
+</ol>
+<p><span style="color:#27ae60">✅ 정답: 2번 | 베이지안 최적화: 대리 모델(Surrogate Model, 주로 가우시안 프로세스)을 사용하여 이전 결과를 기반으로 탐색 영역을 지능적으로 선택. 그리드·랜덤 서치보다 효율적</span></p>
+<hr />
+
+<p><strong>Q81.</strong> 교차 검증(Cross Validation)과 관련하여 층화 k-겹 교차검증(Stratified k-Fold CV)을 사용하는 이유로 옳은 것은?</p>
+<ol>
+<li>계산 속도를 높이기 위해</li>
+<li>클래스 불균형 데이터에서 각 폴드가 클래스 비율을 유지하도록 보장하기 위해</li>
+<li>회귀 문제에서만 사용 가능한 검증 방법이다</li>
+<li>훈련 데이터를 늘리기 위해</li>
+</ol>
+<p><span style="color:#27ae60">✅ 정답: 2번 | 층화 k-겹 CV: 각 폴드가 원본 데이터의 클래스 비율을 반영. 클래스 불균형(예: 사기 탐지, 암 진단) 데이터에서 편향되지 않은 평가 보장</span></p>
+<hr />
+
+<p><strong>Q82.</strong> 모델 성능 개선을 위한 앙상블 기법 중 부스팅(Boosting)에 대한 설명으로 옳지 않은 것은?</p>
+<ol>
+<li>약한 학습기(Weak Learner)를 순차적으로 결합하여 강한 학습기를 만든다</li>
+<li>이전 모델이 잘못 예측한 샘플에 더 높은 가중치를 부여한다</li>
+<li>배깅(Bagging)에 비해 과적합에 더 취약할 수 있다</li>
+<li>병렬 처리가 가능하여 배깅보다 학습 속도가 빠르다</li>
+</ol>
+<p><span style="color:#27ae60">✅ 정답: 4번 | 부스팅은 순차 학습(병렬 불가). 배깅이 병렬 학습 가능. 부스팅: AdaBoost, Gradient Boosting, XGBoost, LightGBM 등</span></p>
+<hr />
+
 <h2>기출문제 추가 학습 자료</h2>
 <table>
 <thead>
@@ -424,6 +861,26 @@ hr { border: none; border-top: 1px solid #45475a; margin: 25px 0; }
 <td>공식 출제 기준</td>
 <td><a href="https://www.dataq.or.kr">dataq.or.kr</a></td>
 <td>공식</td>
+</tr>
+<tr>
+<td>2~7회 기출 해설 정리</td>
+<td><a href="https://www.happycampus.com/exam-doc/29579645/">happycampus.com</a></td>
+<td>PDF 자료</td>
+</tr>
+<tr>
+<td>필기 개념 요약</td>
+<td><a href="https://leechanwoo-kor.github.io">leechanwoo-kor.github.io</a></td>
+<td>과목별 상세 정리</td>
+</tr>
+<tr>
+<td>하둡 에코시스템</td>
+<td><a href="https://yganalyst.github.io/hadoop/hdp_ecosys/">yganalyst.github.io</a></td>
+<td>하둡 구성요소 상세</td>
+</tr>
+<tr>
+<td>2026 대비 패키지</td>
+<td><a href="https://www.dataedu.kr/빅분기-필기-시험-대비/">dataedu.kr</a></td>
+<td>8~11회 기출 포함</td>
 </tr>
 </tbody>
 </table>
